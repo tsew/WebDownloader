@@ -43,13 +43,13 @@ namespace WebDownloader
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            double bytesIn = double.Parse(e.BytesReceived.ToString());
-            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-            double percentage = bytesIn / totalBytes * 100;
+            long bytesIn = e.BytesReceived;
+            long totalBytes = e.TotalBytesToReceive;
+            int percentage = e.ProgressPercentage;
             StatusLabel.Text = "Downloaded " + (e.BytesReceived / 1024).ToString() + " / "
                 + (e.TotalBytesToReceive / 1024).ToString() + " "
-                + ((int)percentage).ToString() + "%";
-            DownloadProgressBar.Value = int.Parse(Math.Truncate(percentage).ToString());
+                + percentage.ToString() + "%";
+            DownloadProgressBar.Value = percentage;
         }
 
         void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
