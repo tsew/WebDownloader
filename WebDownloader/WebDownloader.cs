@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Net;
+using System.Linq;
 
 namespace WebDownloader
 {
@@ -36,7 +37,8 @@ namespace WebDownloader
             client = new WebClient();
             client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
             client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-            client.DownloadFileAsync(new Uri(URLTextBox.Text), "armbian.7z");
+            string filename = URLTextBox.Text.Split('/').Last();
+            client.DownloadFileAsync(new Uri(URLTextBox.Text), filename);
         }
 
         void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
