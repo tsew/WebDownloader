@@ -46,9 +46,7 @@ namespace WebDownloader
             long bytesIn = e.BytesReceived;
             long totalBytes = e.TotalBytesToReceive;
             int percentage = e.ProgressPercentage;
-            StatusLabel.Text = "Downloaded " + (e.BytesReceived / 1024).ToString() + " / "
-                + (e.TotalBytesToReceive / 1024).ToString() + " "
-                + percentage.ToString() + "%";
+            StatusLabel.Text = "Downloaded " + (e.BytesReceived / 1024).ToString() + " / " + (e.TotalBytesToReceive / 1024).ToString() + " " + percentage.ToString() + "%";
             DownloadProgressBar.Value = percentage;
         }
 
